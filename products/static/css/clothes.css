@@ -1,0 +1,46 @@
+body {
+	background-color: #e6ffff;
+	font-family: 'Raleway', sans-serif;
+}
+.jumbotron {
+	background-color:white;
+	color: #FCA205;
+}
+
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.row.display-flex > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name {
+    color: #FCA205;
+}
+.product-description {
+	position: relative;
+	float: center;
+	width: 90%;
+	overflow-wrap: break-word;
+
+}
+.discount-price {
+	color: red;
+}
+
+.product-image {
+    position: relative;
+    float: center;
+    width: 275px;
+    height: 275px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+@media (min-width: 768px) {
+	#navBarSearchForm input[type=text]{
+		width:430px !important;
+	}
