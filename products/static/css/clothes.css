@@ -16,6 +16,9 @@ body {
   flex-direction: column;
 }
 
+.sort-by {
+	color: #FCA205;
+}
 .product-name {
     color: #FCA205;
 }
@@ -40,7 +43,3 @@ body {
     background-size:     cover;
 }
 
-@media (min-width: 768px) {
-	#navBarSearchForm input[type=text]{
-		width:430px !important;
-	}
