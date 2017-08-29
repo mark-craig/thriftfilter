@@ -10,9 +10,18 @@ from .models import Product
 
 
 # Create your views here.
-def index(request):
-	most_discounted = Product.objects.order_by('-markdown')
+def listings(request, department=None):
+	# get department parameter
+	if department == 'M':
+		department_results = Product.objects.all().filter(department="MEN'S")
+	elif department == 'W':
+			department_results = Product.objects.all().filter(department="WOMEN'S")
+	else:
+		department_results = Product.objects.all()
+
+	most_discounted = department_results.order_by('-markdown')
 	paginator = Paginator(most_discounted, 40)
+	# get page parameter
 	page = request.GET.get('page')
 	try:
 		products = paginator.page(page)

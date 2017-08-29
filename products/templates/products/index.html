@@ -100,18 +100,18 @@
   <h3>
     <span class="step-links">
     {% if products.has_previous %}
-      <a href="?page={{ products.previous_page_number }}">Previous</a>
+      <a href="?page={{ products.previous_page_number }}">Previous</a>&emsp;
       {% endif %}
 
       <span class="current">
-        Page {{ products.number }} of {{ products.paginator.num_pages }}.
+        Page {{ products.number }} of {{ products.paginator.num_pages }}. 
       </span>
 
       {% if products.has_next %}
-      <a href="?page={{ products.next_page_number }}">Next</a>
+      &emsp;<a href="?page={{ products.next_page_number }}">Next</a>
       {% endif %}
     </span>
-    </h3>
+  </h3>
   </div>
 </div>
 
