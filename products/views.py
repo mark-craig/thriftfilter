@@ -4,15 +4,27 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Product
 
 
 # Create your views here.
 def index(request):
-	most_discounted_products = Product.objects.order_by('-markdown')[:100]
+	most_discounted = Product.objects.order_by('-markdown')
+	paginator = Paginator(most_discounted, 40)
+	page = request.GET.get('page')
+	try:
+		products = paginator.page(page)
+	except PageNotAnInteger:
+		# If page is not an integer, deliver first page
+		products = paginator.page(1)
+	except EmptyPage:
+		# If page is out of range, deliver last page of results
+		products = paginator.page(paginator.num_pages)
+	
 	template = loader.get_template('products/index.html')
 	context = {
-		'most_discounted' : most_discounted_products
+		'products' : products
 	}
 	return HttpResponse(template.render(context, request))

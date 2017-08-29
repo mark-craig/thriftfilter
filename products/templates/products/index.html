@@ -1,108 +1,127 @@
 {% load static %}
 <html>
-	<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>ThriftFilter</title>
-		<!-- Bootstrap core CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-		<link rel="stylesheet" href="/static/css/clothes.css">
-		<!-- Google fonts -->
-		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>ThriftFilter</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/css/clothes.css">
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 
-		<link rel="shortcut icon" href="/static/images/mobile_logo.png">
-	</head>
-	
-	<body>
-   
+  <link rel="shortcut icon" href="/static/images/mobile_logo.png">
+</head>
+
+<body>
+
   <div class="container-fluid">
-      <!-- Static navbar -->
-      <nav class="navbar navbar-default">
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default">
       <a href="#" class="pull-left"><img src="/static/images/mobile_logo.png" width=50px></a>
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <!-- Department selection-->
-            <ul class="nav navbar-nav navbar-left">
-              <li><a href="/"> ALL PRODUCTS</a></li>
-              <li><a href='/M/'>MEN</a></li>
-              <li><a href='/W/'>WOMEN</a></li>
-            </ul>
-            <!-- Searchbar-->
-            <form class="navbar-form navbar-left" role="search" id="navBarSearchForm">
-            	<div class="form-group">
-            	<input type="text" class="form-control" placeholder="What are you looking for?">
-            	</div>
-            	<button type="submit" class="btn btn-info">
-            		<span class="glyphicon glyphicon-search"></span>
-            		Filter Results
-            	</button>
-            </form>
-            
-            <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SORT BY: <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Most Discounted</a></li>
-                  <li><a href="#">Price: Low to High</a></li>
-                  <li><a href="#">Price: High to Low</a></li>
-                  <li><a href="#">Search Relevance</a></li>
-                </ul>
-              </li>
-             </ul>
-        </div><!--/.nav-collapse -->
-        </nav>
-
-        </div><!--/.nav-collapse -->
-
-      </div><!--/.container-fluid -->
-
       <div class="container-fluid">
-      </nav>
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1 class="welcome-banner">Today's Best Deals</h1>
-      </div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <!-- Department selection-->
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="/"> ALL PRODUCTS</a></li>
+            <li><a href='/M/'>MEN</a></li>
+            <li><a href='/W/'>WOMEN</a></li>
+          </ul>
+          <!-- Searchbar-->
+          <form class="navbar-form navbar-left" role="search" id="navBarSearchForm">
+           <div class="form-group">
+             <input type="text" class="form-control" placeholder="What are you looking for?">
+           </div>
+           <button type="submit" class="btn btn-info">
+            <span class="glyphicon glyphicon-search"></span>
+            Filter Results
+          </button>
+        </form>
 
-      <!-- Three columns of text below the carousel -->
-      <div class="row display-flex justify-content-center">
-      	{% if most_discounted %}
-		    {% for product in most_discounted %}
-      	      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="product-image img-circle" style="background-image:url('{{product.image}}');"></div>
-                <div class="product-description">
-                  <p class="product-name">{{product.name}}</p>
-                  <p class="product-price">${{product.current_price}}</p>
-    		          <p class="product-markdown">{{product.markdown}}% OFF</p>
-    		          <p><a href="{{product.link}}" target="_blank">See details at {{product.brand}} &raquo;</a></p>
-                </div>
-		        </div><!-- /.col-lg-4 -->
-            <div class="clearfix visible-xs"></div> 
-		    {% endfor %}
-		{% else %}
-		    <p>No products are available.</p>
-		{% endif %}
-      </div><!-- /.row -->
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SORT BY: <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Most Discounted</a></li>
+              <li><a href="#">Price: Low to High</a></li>
+              <li><a href="#">Price: High to Low</a></li>
+              <li><a href="#">Search Relevance</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </nav>
 
+  </div><!--/.nav-collapse -->
+
+</div><!--/.container-fluid -->
+
+<div class="container-fluid">
+
+  <!-- Main component for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <h1 class="welcome-banner">Today's Best Deals</h1>
+  </div>
+
+  <!-- Three columns of text below the carousel -->
+  <div class="row display-flex justify-content-center">
+   {% if products %}
+   {% for product in products %}
+   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="product-image img-circle" style="background-image:url('{{product.image}}');"></div>
+    <div class="product-description">
+      <p class="product-name">{{product.name}}</p>
+      <p class="product-price">${{product.current_price}}</p>
+      <p class="product-markdown">{{product.markdown}}% OFF</p>
+      <p><a href="{{product.link}}" target="_blank">See details at {{product.brand}} &raquo;</a></p>
     </div>
-    </div>
+  </div><!-- /.col-lg-4 -->
+  <div class="clearfix visible-xs"></div> 
+  {% endfor %}
+  {% else %}
+  <p>No products are available.</p>
+  {% endif %}
+</div><!-- /.row -->
+
+<div class="row text-center">
+  <div class="pagination">
+  <h3>
+    <span class="step-links">
+    {% if products.has_previous %}
+      <a href="?page={{ products.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      <span class="current">
+        Page {{ products.number }} of {{ products.paginator.num_pages }}.
+      </span>
+
+      {% if products.has_next %}
+      <a href="?page={{ products.next_page_number }}">Next</a>
+      {% endif %}
+    </span>
+    </h3>
+  </div>
+</div>
+
+</div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   </body>
-</html>
+  </html>
