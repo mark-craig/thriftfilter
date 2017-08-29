@@ -1,4 +1,5 @@
 {% load static %}
+{% load products_extras %}
 <html>
 <head>
   <meta charset="utf-8">
@@ -36,8 +37,8 @@
           <!-- Department selection-->
           <ul class="nav navbar-nav navbar-left">
             <li><a href="/"> ALL PRODUCTS</a></li>
-            <li><a href='/M/'>MEN</a></li>
-            <li><a href='/W/'>WOMEN</a></li>
+            <li><a href='/men/'>MEN</a></li>
+            <li><a href='/women/'>WOMEN</a></li>
           </ul>
           <!-- Searchbar-->
           <form class="navbar-form navbar-left" role="search" id="navBarSearchForm">
@@ -54,9 +55,9 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SORT BY: <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Most Discounted</a></li>
-              <li><a href="#">Price: Low to High</a></li>
-              <li><a href="#">Price: High to Low</a></li>
+              <li><a href="?sortby=mostdiscounted">Most Discounted</a></li>
+              <li><a href="?sortby=lowtohigh">Price: Low to High</a></li>
+              <li><a href="?sortby=hightolow">Price: High to Low</a></li>
               <li><a href="#">Search Relevance</a></li>
             </ul>
           </li>
@@ -80,11 +81,11 @@
    {% if products %}
    {% for product in products %}
    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class="product-image img-circle" style="background-image:url('{{product.image}}');"></div>
+    <div class="product-image img-circle"><img class="product-image img-circle" src="{{product.image}}" onerror="/static/images/noimage.png"></div>
     <div class="product-description">
       <p class="product-name">{{product.name}}</p>
       <p class="product-price">${{product.current_price}}</p>
-      <p class="product-markdown">{{product.markdown}}% OFF</p>
+      <p class="product-markdown">{% widthratio product.markdown 1 100 %}% OFF</p>
       <p><a href="{{product.link}}" target="_blank">See details at {{product.brand}} &raquo;</a></p>
     </div>
   </div><!-- /.col-lg-4 -->
@@ -100,7 +101,7 @@
   <h3>
     <span class="step-links">
     {% if products.has_previous %}
-      <a href="?page={{ products.previous_page_number }}">Previous</a>&emsp;
+      <a href="?{% url_replace request 'page' products.previous_page_number %}">Previous</a>&emsp;
       {% endif %}
 
       <span class="current">
@@ -108,7 +109,7 @@
       </span>
 
       {% if products.has_next %}
-      &emsp;<a href="?page={{ products.next_page_number }}">Next</a>
+      &emsp;<a href="?{% url_replace request 'page' products.next_page_number %}">Next</a>
       {% endif %}
     </span>
   </h3>
