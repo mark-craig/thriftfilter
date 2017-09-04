@@ -48,17 +48,16 @@
               <li><a href="?sortby=mostdiscounted">Largest Discount</a></li>
               <li><a href="?sortby=lowtohigh">Price: Low to High</a></li>
               <li><a href="?sortby=hightolow">Price: High to Low</a></li>
-              <li><a href="#">Search Relevance</a></li>
             </ul>
           </li>
         </ul>
           <!-- Searchbar-->
-          <form class="navbar-form">
+          <form class="navbar-form" action="{% url 'listings' %}" method='get'>
             <div class="form-group" style="display:inline;">
               <div style="display:table;" class="input-group">
-                <input type="text" class="form-control" placeholder="Add search keywords to narrow results">
+                <input type="text" class="form-control" name="query" placeholder="Add search keywords to narrow results">
                 <span style="width:1%" class="input-group-btn">
-                  <button class="btn btn-default btn-info" type="button"><Span class="glyphicon glyphicon-search" aria-hidden="true"></span> Filter</button>
+                  <button class="btn btn-default btn-info" type="submit"><Span class="glyphicon glyphicon-search" aria-hidden="true"></span> Filter</button>
                 </span>
               </div>
             </div>
@@ -75,7 +74,7 @@
 
   <!-- Main component for a primary marketing message or call to action -->
   <div class="jumbotron">
-    <h1 class="welcome-banner">Today's Best Deals</h1>
+    <h2 class="welcome-banner">{{jumbotron_msg}}</h2>
   </div>
 
   <!-- Three columns of text below the carousel -->
@@ -94,7 +93,7 @@
   <div class="clearfix visible-xs"></div> 
   {% endfor %}
   {% else %}
-  <p>No products are available.</p>
+  <div class="col-lg-12">No products are available.</div>
   {% endif %}
 </div><!-- /.row -->
 
