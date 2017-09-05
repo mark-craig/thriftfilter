@@ -1,1 +1,1 @@
-web: gunicorn thriftfilter.wsgi:application --log-file -
+web: gunicorn --log-file=- --preload thriftfilter.wsgi:application
