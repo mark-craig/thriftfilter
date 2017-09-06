@@ -3,6 +3,7 @@ from products.models import Product
 import glob
 import json
 import os
+import pdb
 
 class Command(BaseCommand):
     args = 'dir (optional) : The directory in which the JSON files can be found.'
@@ -14,6 +15,7 @@ class Command(BaseCommand):
             with open(file) as json_data:
                 # assume the dictionary has identical parameter names as model
                 d = json.load(json_data)
+                # pdb.set_trace()
                 prod, created = Product.objects.update_or_create(
                         name=d['name'], brand=d['brand'], defaults=d)
 
