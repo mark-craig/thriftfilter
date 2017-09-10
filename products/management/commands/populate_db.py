@@ -18,6 +18,8 @@ class Command(BaseCommand):
                 # pdb.set_trace()
                 prod, created = Product.objects.update_or_create(
                         name=d['name'], brand=d['brand'], defaults=d)
+            # delete the file once we're done
+            os.remove(file)
 
     def handle(self, *args, **options):
         self._add_products_from_dir()
